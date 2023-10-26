@@ -11,7 +11,10 @@ import time
 from hashlib import md5
 
 from sqlalchemy.orm.interfaces import MapperOption
-from flask_sqlalchemy.query import Query as BaseQuery
+try:
+    from flask_sqlalchemy import BaseQuery
+except ImportError:
+    from flask_sqlalchemy.query import Query as BaseQuery
 
 
 class CachingQuery(BaseQuery):
